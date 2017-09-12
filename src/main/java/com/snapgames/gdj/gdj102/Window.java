@@ -42,7 +42,9 @@ public class Window {
 		frame.setPreferredSize(game.getDimension());
 		frame.setMaximumSize(game.getDimension());
 		frame.setResizable(false);
+		frame.addKeyListener(game.getInputHandler());
 		frame.pack();
 		frame.setVisible(true);
+		game.setWindow(this); 
 	}
 }
