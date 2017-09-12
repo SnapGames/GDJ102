@@ -42,7 +42,10 @@ public class Window {
 		frame.setPreferredSize(game.getDimension());
 		frame.setMaximumSize(game.getDimension());
 		frame.setResizable(false);
+		
+		// add the Game InputHandler as a KeyListener
 		frame.addKeyListener(game.getInputHandler());
+		
 		frame.pack();
 		frame.setVisible(true);
 		game.setWindow(this); 

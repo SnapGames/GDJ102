@@ -78,7 +78,7 @@ public class Game extends JPanel {
 	 */
 	private void input() {
 		// Process keys
-		if (inputHandler.getKeyPressed(KeyEvent.VK_ESCAPE)) {
+		if (inputHandler.getKeyReleased(KeyEvent.VK_ESCAPE)) {
 			setExit(true);
 		}
 		inputHandler.clean();
