@@ -2,7 +2,7 @@
 
 [![TravisCI](https://travis-ci.org/SnapGames/GDJ102.svg?branch=develop)](https://travis-ci.org/SnapGames/GDJ102 "open the TravisCI compilation trend")
 
-## Game Developement Java Basics 101
+## Game Developement Java Basics 102
 
 This project i spart of the [GDJ102](https://classroom.google.com/c/NzI2ODQ3NjU2MFpa/t/NzI2Nzg0MjgxNFpa) course from [GameDev Basics
 Java](https://classroom.google.com/c/NzI2ODQ3NjU2MFpa "Open the official online course") 
