@@ -19,7 +19,7 @@ To compile the full project, please execute the followin' command :
 
 to execute the the compiled jar, please execute the command bellow :
 
-    $> mvn exec:exec
+    $> mvn exec:java
 
 
 ## Edit
