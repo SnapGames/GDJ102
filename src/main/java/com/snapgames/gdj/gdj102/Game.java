@@ -59,12 +59,12 @@ public class Game extends JPanel {
 	}
 
 	/**
-	 * The main entry point to start our GDJ101 game.
+	 * The main entry point to start our GDJ102 game.
 	 * 
 	 * @param argv
 	 */
 	public static void main(String[] argv) {
-		Game game = new Game("GDJ101");
+		Game game = new Game("GDJ102");
 		Window window = new Window(game);
 	}
 
