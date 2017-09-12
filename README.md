@@ -4,9 +4,20 @@
 
 ## Game Developement Java Basics 102
 
-This project i spart of the [GDJ102](https://classroom.google.com/c/NzI2ODQ3NjU2MFpa/t/NzI2Nzg0MjgxNFpa) course from [GameDev Basics
+This project is part of the [GDJ102](https://classroom.google.com/c/NzI2ODQ3NjU2MFpa/t/NzI2Nzg0MjgxNFpa) course from [GameDev Basics
 Java](https://classroom.google.com/c/NzI2ODQ3NjU2MFpa "Open the official online course") 
 provided by the [SnapGames](http://snapgames.fr) site. 
+
+### Goal
+
+The purpose of this sample is to propose the
+Game `loop()` and a first implementation of an `InputHandler()` to manager key input.
+
+Here are the 3 main classes:
+
+- `Game` to manage the game,
+- `Window` to display the game,
+- `InputHandler` to manage input.
 
 ## Compile
 
@@ -21,6 +32,9 @@ to execute the the compiled jar, please execute the command bellow :
 
     $> mvn exec:java
 
+or :
+
+    $> java -jar gdj102-0.0.1-SNAPSHOT.jar
 
 ## Edit
 
