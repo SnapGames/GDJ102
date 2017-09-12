@@ -155,7 +155,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>${mainclass}</mainClass>
+					<mainClass>${mainClass}</mainClass>
 					<arguments>
 						<argument>foo</argument>
 						<argument>bar</argument>
