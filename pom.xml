@@ -36,6 +36,10 @@
 		<system>Github issues</system>
 		<url>https://github.com/SnapGames/GDJ102/issues</url>
 	</issueManagement>
+	<ciManagement>
+		<url>https://travis-ci.org/SnapGames/GDJ102</url>
+		<system>Travis-CI</system>
+	</ciManagement>
 
 	<properties>
 		<mainClass>com.snapgames.gdj.gdj102.Game</mainClass>
@@ -46,7 +50,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.0</version>
+				<version>3.7.0</version>
 				<configuration>
 					<!-- http://maven.apache.org/plugins/maven-compiler-plugin/ -->
 					<source>1.8</source>
@@ -120,7 +124,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.6</version>
+				<version>3.1.0</version>
 				<configuration>
 					<encoding>utf-8</encoding>
 					<archive>
@@ -146,7 +150,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
+				<version>1.6.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -164,8 +168,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<ciManagement>
-		<system>Travis-CI</system>
-	</ciManagement>
 </project>
