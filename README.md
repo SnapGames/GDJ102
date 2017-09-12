@@ -1,6 +1,6 @@
 # GDJ102
 
-[![TravisCI](https://travis-ci.org/SnapGames/GDJ102.svg?branch=develop)](https://travis-ci.org/SnapGames/GDJ102 "open the TravisCI compilation trend")
+[![TravisCI](https://travis-ci.org/SnapGames/GDJ102.svg?branch=develop)](https://travis-ci.org/SnapGames/GDJ102 "open the TravisCI compilation trend") [![Dependency Status](https://www.versioneye.com/user/projects/59b85cc60fb24f004e1a65ab/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59b85cc60fb24f004e1a65ab "Go and visit VersionEye")
 
 ## Game Developement Java Basics 102
 
