@@ -9,6 +9,7 @@
  */
 package com.snapgames.gdj.gdj102;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -38,6 +39,8 @@ public class Game extends JPanel {
 
 	private InputHandler inputHandler;
 
+	private int frame;
+
 	/**
 	 * the default constructor for the {@link Game} panel with a game
 	 * <code>title</code>.
@@ -50,7 +53,6 @@ public class Game extends JPanel {
 		this.dimension = new Dimension(640, 400);
 
 		exit = false;
-		g = (Graphics2D) getGraphics();
 		inputHandler = new InputHandler();
 	}
 
@@ -60,16 +62,42 @@ public class Game extends JPanel {
 	 */
 	private void initialize() {
 
+		g = (Graphics2D) getGraphics();
 	}
 
 	/**
 	 * The main Loop !
 	 */
 	private void loop() {
+		int FPS = 60;
+		int delay = 1000 / FPS;
+		int cpt = 0;
 		while (!exit) {
 			input();
 			update();
+			frame = cpt;
 			render(g);
+			wait(delay);
+			cpt++;
+			if (cpt > 60) {
+				cpt = 0;
+			}
+		}
+	}
+
+	@Override
+	public void addNotify() {
+		super.addNotify();
+	}
+
+	/**
+	 * @param delay
+	 */
+	private void wait(int delay) {
+		try {
+			Thread.sleep(delay);
+		} catch (InterruptedException e) {
+			System.err.println("Unable to wait for " + delay + "ms : " + e.getMessage());
 		}
 	}
 
@@ -97,7 +125,12 @@ public class Game extends JPanel {
 	 * @param g
 	 */
 	private void render(Graphics2D g) {
+		// clear area
+		g.clearRect(0, 0, 640, 400);
 
+		// draw some text
+		g.setColor(Color.BLACK);
+		g.drawString("Looping " + frame + " times !", 280, 200);
 	}
 
 	/**
