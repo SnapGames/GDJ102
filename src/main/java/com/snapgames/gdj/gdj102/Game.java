@@ -11,8 +11,11 @@ package com.snapgames.gdj.gdj102;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -22,7 +25,7 @@ import javax.swing.JPanel;
  * @author Frederic
  *
  */
-public class Game extends JPanel {
+public class Game extends JPanel implements Runnable {
 
 	/**
 	 * The title for the game instance.
@@ -37,9 +40,18 @@ public class Game extends JPanel {
 
 	private Graphics2D g;
 
+	private BufferedImage image;
+
 	private InputHandler inputHandler;
 
+	private FPSCounter fpsCounter;
+
 	private int frame;
+
+	private Thread thread;
+
+	int x = 0, y = 0, dx = 5, dy = 5;
+	Color color = Color.RED;
 
 	/**
 	 * the default constructor for the {@link Game} panel with a game
@@ -52,48 +64,89 @@ public class Game extends JPanel {
 		this.title = title;
 		this.dimension = new Dimension(640, 400);
 
-		exit = false;
+		fpsCounter = new FPSCounter();
 		inputHandler = new InputHandler();
+		exit = false;
 	}
 
 	/**
-	 * Initialize the Game object with <code>g</code>, the Graphics2D interface
-	 * to render things.
+	 * Initialize the Game object with <code>g</code>, the Graphics2D interface to
+	 * render things.
 	 */
 	private void initialize() {
+		image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		g = (Graphics2D) image.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	}
 
-		g = (Graphics2D) getGraphics();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.JComponent#addNotify()
+	 */
+	@Override
+	public void addNotify() {
+		super.addNotify();
+		if (thread == null) {
+			thread = new Thread(this);
+			thread.start();
+		}
 	}
 
 	/**
 	 * The main Loop !
 	 */
 	private void loop() {
-		int FPS = 60;
-		int delay = 1000 / FPS;
-		int cpt = 0;
+		int fps = 60;
+		int delay = 1000 / fps;
+		
+		long current = 0;
+		
 		while (!exit) {
+			current = System.currentTimeMillis();
+			
 			input();
 			update();
-			frame = cpt;
 			render(g);
-			wait(delay);
-			cpt++;
-			if (cpt > 60) {
-				cpt = 0;
+
+			drawToScreen();
+			fpsCounter.tick();
+
+			long wait = delay - (System.currentTimeMillis() - current);
+			System.out.println("wait:"+wait);
+
+			if (wait < 0) {
+				wait = 1;
 			}
+
+			sleep((int) wait);
+
 		}
 	}
 
-	@Override
-	public void addNotify() {
-		super.addNotify();
+	/**
+	 * Draw Buffer to screen.
+	 */
+	private void drawToScreen() {
+		Graphics g2 = this.getGraphics();
+
+		// draw some text
+		g.setColor(Color.WHITE);
+		g.drawString("FPS:" + fpsCounter.getFPS(), 10, 380);
+
+		g2.drawImage(image, 0, 0, null);
+		g2.dispose();
+
+		// clear area
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, getWidth(), getHeight());
+
 	}
 
 	/**
 	 * @param delay
 	 */
-	private void wait(int delay) {
+	private void sleep(int delay) {
 		try {
 			Thread.sleep(delay);
 		} catch (InterruptedException e) {
@@ -116,7 +169,16 @@ public class Game extends JPanel {
 	 * Update game internals
 	 */
 	private void update() {
-
+		x += dx;
+		y += dy;
+		if (x <= 0 || x >= getWidth() - 16) {
+			dx = -dx;
+			color = Color.YELLOW;
+		}
+		if (y <= 0 || y >= getHeight() - 16) {
+			dy = -dy;
+			color = Color.YELLOW;
+		}
 	}
 
 	/**
@@ -125,12 +187,10 @@ public class Game extends JPanel {
 	 * @param g
 	 */
 	private void render(Graphics2D g) {
-		// clear area
-		g.clearRect(0, 0, 640, 400);
 
-		// draw some text
-		g.setColor(Color.BLACK);
-		g.drawString("Looping " + frame + " times !", 280, 200);
+		g.setColor(color);
+		g.fillArc(x, y, 16, 16, 0, 360);
+		color = Color.RED;
 	}
 
 	/**
