@@ -46,8 +46,6 @@ public class Game extends JPanel implements Runnable {
 
 	private FPSCounter fpsCounter;
 
-	private int frame;
-
 	private Thread thread;
 
 	int x = 0, y = 0, dx = 5, dy = 5;
@@ -267,7 +265,7 @@ public class Game extends JPanel implements Runnable {
 	 */
 	public static void main(String[] argv) {
 		Game game = new Game("GDJ102");
-		Window window = new Window(game);
+		new Window(game);
 		game.run();
 	}
 }
