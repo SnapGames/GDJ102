@@ -160,6 +160,9 @@ public class Game extends JPanel implements Runnable {
 		if (inputHandler.getKeyReleased(KeyEvent.VK_ESCAPE)) {
 			setExit(true);
 		}
+		if(inputHandler.getKeyReleased(KeyEvent.VK_S)) {
+			ImageUtils.screenshot(image);
+		}
 		inputHandler.clean();
 	}
 
