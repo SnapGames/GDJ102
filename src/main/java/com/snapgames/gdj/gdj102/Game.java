@@ -21,6 +21,7 @@ import javax.swing.JPanel;
  * @author Frederic
  *
  */
+@SuppressWarnings("serial")
 public class Game extends JPanel {
 
 	/**
@@ -174,6 +175,7 @@ public class Game extends JPanel {
 	 */
 	public static void main(String[] argv) {
 		Game game = new Game("GDJ102");
+		@SuppressWarnings("unused")
 		Window window = new Window(game);
 		game.run();
 	}
